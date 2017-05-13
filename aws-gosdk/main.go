@@ -23,8 +23,7 @@ func main() {
 }
 
 func getLatest() string{
-	nt := "_________________epen2________________________________ \n "
-	nt += "_________________USA________________________________ \n "
+	nt := "_________________USA________________________________ \n "
 	nt += list_instance("us-east-1")
 	nt += "________________UK________________________________ \n "
 	nt += list_instance("eu-west-2")
@@ -46,10 +45,10 @@ func list_instance(region string) string {
 	
 	params := &ec2.DescribeInstancesInput{
 		Filters: []*ec2.Filter{
-			{
-				Name:   aws.String("tag:app_name"),
-				Values: []*string{aws.String("epen2"), aws.String("epen2-uk")},
-			},
+			// {
+			// 	Name:   aws.String("tag:app_name"),
+			// 	Values: []*string{aws.String(""), aws.String("")},
+			// },
 			{
 				Name:   aws.String("instance-state-name"),
 				Values: []*string{aws.String("running"), aws.String("pending")},
@@ -73,7 +72,7 @@ func list_instance(region string) string {
 			if res != nil {
 				for _, t := range inst.Tags {
 					if *t.Key == "Name" {
-						nt +=  *inst.InstanceType +"     " + *inst.PrivateIpAddress +"    "+*t.Value 
+						nt +=  *inst.InstanceType + "  "+*inst.State.Name+"     " + *inst.PrivateIpAddress +"    "+*t.Value 
 						nt += "\n" 
 				//		break
 					}
