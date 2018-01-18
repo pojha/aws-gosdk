@@ -72,7 +72,7 @@ func list_instance(region string) string {
 			if res != nil {
 				for _, t := range inst.Tags {
 					if *t.Key == "Name" {
-						nt +=  *inst.InstanceType + "  "+*inst.State.Name+"     " + *inst.PrivateIpAddress +"    "+*t.Value 
+						nt +=   *inst.PrivateIpAddress +"    "+*t.Value + *inst.InstanceType + "  "+*inst.State.Name+"     " 
 						nt += "\n" 
 				//		break
 					}
